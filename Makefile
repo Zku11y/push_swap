@@ -6,7 +6,7 @@ CC = cc -Wall -Wextra -Werror
 
 
 all:
-	$(CC) src/main.c libft/*.c printf/*.c -o push_swap
+	$(CC) src/*.c libft/*.c printf/*.c lst_mng/*.c -o push_swap
 
 push:
 	$(CC) $(FILES) -o push_swap $(PRINTF)
