@@ -2,7 +2,7 @@ NAME = ft_push_swap.a
 FILES = ft_push_swap.c
 PRINTF = ./printf/ft_printf.o
 OBJECT = $(FILES:.c=.o)
-CC = cc -Wall -Wextra -Werror
+CC = cc -fsanitize=address -g -Wall -Wextra -Werror
 
 
 all:

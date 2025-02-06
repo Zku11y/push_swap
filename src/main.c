@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:16:40 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/05 20:48:14 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/06 14:05:18 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (0);
-	stack_a = malloc(sizeof(t_stack));
-	stack_b = malloc(sizeof(t_stack));
-	if (stack_a == NULL || stack_b == NULL)
-	{
-		write(1, "\033[1;31mError1\033[0m\n", 17);
-		return (0);
-	}
+	// stack_a = malloc(sizeof(t_stack));
+	// stack_b = malloc(sizeof(t_stack));
+	// if (stack_a == NULL || stack_b == NULL)
+	// {
+	// 	write(1, "\033[1;31mError1\033[0m\n", 17);
+	// 	return (0);
+	// }
 	if (error_check(ac - 1, av, &stack_a, &stack_b) == -1)
 	{
 		write(1, "\033[1;31mError2\033[0m\n", 17);
