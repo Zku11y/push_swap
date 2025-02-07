@@ -1,29 +1,11 @@
-NAME = ft_push_swap.a
-FILES = ft_push_swap.c
-PRINTF = ./printf/ft_printf.o
-OBJECT = $(FILES:.c=.o)
+NAME = push_swap
+SRC = libft/*.c printf/*.c parsing_and_main/*.c
+OBJ = $(SRC:.c=.o)
 CC = cc -fsanitize=address -g -Wall -Wextra -Werror
 
 
-all:
-	$(CC) src/*.c libft/*.c printf/*.c lst_mng/*.c -o push_swap
+$(NAME):$(SRC)
+	$(CC) $(SRC) -o $(NAME)
 
-push:
-	$(CC) $(FILES) -o push_swap $(PRINTF)
-	./push_swap
-
-$(NAME):$(OBJECT)
-	ar rcs $(FILES) $(OBJECT)
-
-%.o:%.c
-	$(CC) -c $< -o $@
-
-clean:
-	rm -fr $(OBJECT)
-
-fclean: clean
-	rm -fr $(NAME)
-
-re: fclean $(NAME)
-
-.PHONY: clean
+t:
+	./push_swap 1 2 3 4 5

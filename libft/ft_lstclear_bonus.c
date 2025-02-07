@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 11:15:35 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/06 13:05:25 by mdakni           ###   ########.fr       */
+/*   Created: 2024/10/31 18:59:18 by mdakni            #+#    #+#             */
+/*   Updated: 2025/02/07 10:02:03 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-#include <stdio.h>
+#include "libft.h"
 
-t_stack	*ft_lstnew(int data)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_stack	*ptr;
+	t_list	*ptr;
 
-	ptr = malloc(sizeof(t_stack));
-	if (ptr == NULL)
-		return (NULL);
-	printf("data before put in list = %d\n", data);
-	ptr->content = data;
-	printf("data after put in list = %d\n", ptr->content);
-	ptr->next = NULL;
-	return (ptr);
+	if (!lst || !*del)
+		return ;
+	while (*lst)
+	{
+		ptr = *lst;
+		*lst = (*lst)->next;
+		del(ptr->content);
+		free(ptr);
+	}
+	*lst = NULL;
 }

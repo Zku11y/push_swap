@@ -6,11 +6,15 @@ ft_bzero.c ft_toupper.c ft_tolower.c ft_split.c ft_memcpy.c ft_memmove.c\
 ft_strlcpy.c ft_strlcat.c ft_memchr.c ft_memcmp.c ft_calloc.c ft_strdup.c\
 ft_strtrim.c
 
+BSRCS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c\
+ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c\
+ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
 NAME = libft.a
 CC = cc
 FLAGS = -Wall -Wextra -Werror
 OBJS = $(SRCS:.c=.o)
+BOBJS = $(BSRCS:.c=.o)
 
 
 all:$(NAME)
@@ -18,19 +22,21 @@ all:$(NAME)
 $(NAME):$(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
+bonus: $(BOBJS)
+	ar rcs $(NAME) $(BOBJS)
 
 %.o: %.c libft.h
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BOBJS)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean $(NAME)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
 
 	
 	

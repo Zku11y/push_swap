@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 09:34:11 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/07 13:44:09 by mdakni           ###   ########.fr       */
+/*   Created: 2024/10/31 15:47:57 by mdakni            #+#    #+#             */
+/*   Updated: 2024/11/05 19:20:45 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include "printf/ft_printf.h"
-
-typedef struct two_ints
+int	ft_lstsize(t_list *lst)
 {
-	int	a;
-	int	b;
-}		t_ints;
+	size_t	i;
 
-void	ft_error(t_list *stack_a, t_list *stack_b);
-t_ints	ft_atoi_ps(const char *str, int i);
-int		parsing(int ac, char **av, t_list **stack_a, t_list **stack_b);
-#endif
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}

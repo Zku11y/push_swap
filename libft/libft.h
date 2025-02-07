@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:21:14 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/05 20:51:54 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/07 12:43:26 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 typedef struct s_list
 {
 	void			*content;
+	int				nb;
 	struct s_list	*next;
+	struct s_list	*prev;
 }					t_list;
 
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -58,5 +60,15 @@ int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
+void				ft_lstiter(t_list *lst, void (*f)(void *));
+void				ft_lstclear(t_list **lst, void (*del)(void *));
+void				ft_lstdelone(t_list *lst, void (*del)(void *));
+void				ft_lstadd_back(t_list **lst, t_list *new);
+void				ft_lstadd_front(t_list **lst, t_list *new);
+int					ft_lstsize(t_list *lst);
+t_list				*ft_lstnew(void *content);
+t_list				*ft_lstlast(t_list *lst);
+t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
+						void (*del)(void *));
 
 #endif
