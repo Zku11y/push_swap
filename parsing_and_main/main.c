@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:43 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/07 13:57:02 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/07 15:44:08 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	lst_print(t_list *head)
 		data = head->nb;
 		if (data == 0)
 			ft_printf("\033[1;31m%d\033[0m", 0);
+		else if (data < 0)
+			ft_printf("\033[3;1;36m%d\033[0m", data);
 		else
 			ft_printf("\033[1;34m%d\033[0m", data);
 		ft_printf("\033[1;37m->\033[0m");

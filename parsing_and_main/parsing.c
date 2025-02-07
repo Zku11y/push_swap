@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:02:40 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/07 13:58:22 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/07 15:32:28 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_ints	ft_atoi_ps(const char *str, int i)
 	if ((answer * sign) > INT_MAX || (answer * sign) < INT_MIN || (str[i] != ' '
 			&& str[i] != '\0'))
 		return (final.b = -1, final);
+	while ((str[i] == ' ') || (str[i] >= 9 && str[i] <= 13))
+		i++;
 	final.a = (int)(answer * sign);
 	final.b = i;
 	return (final);
@@ -58,6 +60,18 @@ int	assign_stack(t_list **head, t_list **stack_a, int content)
 	*head = node;
 	return (0);
 }
+int	check_empty(char *str)
+{
+	int	i;
+
+	i = 0;
+	while ((str[i] == ' ') || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '\0')
+		return (-1);
+	return (0);
+}
+
 int	parsing(int ac, char **av, t_list **stack_a, t_list **stack_b)
 {
 	int		i;
@@ -72,6 +86,8 @@ int	parsing(int ac, char **av, t_list **stack_a, t_list **stack_b)
 	while (i < ac)
 	{
 		j = 0;
+		if (check_empty(av[i]) == -1)
+			ft_error(*stack_a, *stack_b);
 		while (av[i][j])
 		{
 			tmp = ft_atoi_ps(av[i], j);
