@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:02:40 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/07 15:32:28 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/08 12:14:14 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,34 @@ t_ints	ft_atoi_ps(const char *str, int i)
 	final.a = (int)(answer * sign);
 	final.b = i;
 	return (final);
+}
+
+void	dup_check(int args, t_list **stack_a)
+{
+	int		i;
+	t_list	*head;
+	long	*arr;
+
+	arr = arr_assign(args);
+	if (!arr)
+		ft_error(*stack_a);
+	head = *stack_a;
+	while (head)
+	{
+		i = 0;
+		while (arr[i] != (long)(INT_MAX) + 2)
+		{
+			if (arr[i] == head->nb)
+			{
+				free(arr);
+				ft_error(*stack_a);
+			}
+			i++;
+		}
+		arr[i] = (long)head->nb;
+		head = head->next;
+	}
+	free(arr);
 }
 
 int	assign_stack(t_list **head, t_list **stack_a, int content)
@@ -72,7 +100,7 @@ int	check_empty(char *str)
 	return (0);
 }
 
-int	parsing(int ac, char **av, t_list **stack_a, t_list **stack_b)
+int	parsing(int ac, char **av, t_list **stack_a)
 {
 	int		i;
 	int		j;
@@ -87,12 +115,12 @@ int	parsing(int ac, char **av, t_list **stack_a, t_list **stack_b)
 	{
 		j = 0;
 		if (check_empty(av[i]) == -1)
-			ft_error(*stack_a, *stack_b);
+			ft_error(*stack_a);
 		while (av[i][j])
 		{
 			tmp = ft_atoi_ps(av[i], j);
 			if (tmp.b == -1 || assign_stack(&head, stack_a, tmp.a) == -1)
-				ft_error(*stack_a, *stack_b);
+				ft_error(*stack_a);
 			size++;
 			j = tmp.b;
 		}

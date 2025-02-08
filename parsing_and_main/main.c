@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:43 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/07 15:44:08 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/08 12:06:10 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,30 +42,48 @@ void	lst_print(t_list *head)
 			ft_printf("\033[3;1;36m%d\033[0m", data);
 		else
 			ft_printf("\033[1;34m%d\033[0m", data);
-		ft_printf("\033[1;37m->\033[0m");
+		ft_printf("\033[1;37m -> \033[0m");
 		head = head->next;
 	}
 	ft_printf("\033[1;35mNULL\033[0m");
 	ft_printf("\033[1;33m %d\033[0m\n", size);
 }
+
+void	stack_b_list(t_list **stack_b, t_list **stack_a, int args)
+{
+	t_list	*head;
+	int		i;
+
+	head = *stack_b;
+	i = 0;
+	while (i < args)
+	{
+		if (assign_stack(&head, stack_b, 0) == -1)
+		{
+			ft_lstclear(stack_b, del);
+			ft_error(*stack_a);
+		}
+		i++;
+	}
+}
 int	main(int ac, char **av)
 {
-	t_list *stack_a;
-	t_list *stack_b;
-	int i;
-	int args;
+	t_list	*stack_a;
+	t_list	*stack_b;
+	int		i;
+	int		args;
 
-	if (ac < 2)
-		return (-1);
 	i = 1;
 	stack_a = NULL;
 	stack_b = NULL;
-	args = parsing(ac, av, &stack_a, &stack_b);
+	args = parsing(ac, av, &stack_a);
+	dup_check(args, &stack_a);
+	stack_b_list(&stack_b, &stack_a, args);
 	lst_print(stack_a);
+	lst_print(stack_b);
 	// print_list(stack_a);
 	// print_list(stack_b);
 	ft_printf("\e[1;32mthe size of stack a is = \e[0m%d\n", args);
 	ft_printf("\e[1;32mthe size of stack b is = \e[0m%d\n", args);
-
 	return (0);
 }
