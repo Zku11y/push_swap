@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:43 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/08 12:06:10 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/08 21:08:29 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ int	main(int ac, char **av)
 	args = parsing(ac, av, &stack_a);
 	dup_check(args, &stack_a);
 	stack_b_list(&stack_b, &stack_a, args);
+	reverse_rotate(&stack_a);
+	lst_print(stack_a);
+	lst_print(stack_b);
+	rotate(&stack_a);
 	lst_print(stack_a);
 	lst_print(stack_b);
 	// print_list(stack_a);
