@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:43 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/09 11:13:10 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/09 13:03:55 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,25 +82,27 @@ int	main(int ac, char **av)
 	stack_a = NULL;
 	stack_b = NULL;
 	args = parsing(ac, av, &stack_a);
+	if (ac <= 2 || args == -1 || stack_a == NULL)
+		return (-1);
 	dup_check(args, &stack_a);
 	stack_b_list(&stack_b, &stack_a, args);
-	reverse_rotate(&stack_a);
+	reverse_rotate(&stack_a, "rra");
 	ft_printf("\e[1;42mReverse Rotate :\e[0m\n");
 	lst_print(stack_a);
 	lst_print(stack_b);
-	rotate(&stack_a);
+	rotate(&stack_a, "ra");
 	ft_printf("\e[1;43mRotate :\e[0m\n");
 	lst_print(stack_a);
 	lst_print(stack_b);
-	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b, "pb");
 	ft_printf("\e[1;45mPush 1 :\e[0m\n");
 	lst_print(stack_a);
 	lst_print(stack_b);
-	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b, "pb");
 	ft_printf("\e[1;45mPush 2 :\e[0m\n");
 	lst_print(stack_a);
 	lst_print(stack_b);
-	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b, "pb");
 	ft_printf("\e[1;45mPush 3 :\e[0m\n");
 	lst_print(stack_a);
 	lst_print(stack_b);

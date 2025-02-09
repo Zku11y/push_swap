@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:02:40 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/09 10:31:11 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/09 12:40:23 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,12 @@ int	parsing(int ac, char **av, t_list **stack_a)
 	{
 		j = 0;
 		if (check_empty(av[i]) == -1)
-			ft_error(*stack_a);
+			return (ft_error(*stack_a), -1);
 		while (av[i][j])
 		{
 			tmp = ft_atoi_ps(av[i], j);
 			if (tmp.error == true || assign_stack(&head, stack_a, tmp) == -1)
-				ft_error(*stack_a);
+				return (ft_error(*stack_a), -1);
 			size++;
 			j = tmp.temp;
 		}
