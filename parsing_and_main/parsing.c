@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:02:40 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/08 12:14:14 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/09 10:31:11 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,18 @@ t_ints	ft_atoi_ps(const char *str, int i)
 		answer = (answer * 10) + (str[i++] - '0');
 	if ((answer * sign) > INT_MAX || (answer * sign) < INT_MIN || (str[i] != ' '
 			&& str[i] != '\0'))
-		return (final.b = -1, final);
+		return (final.value = 0, final.none = true, final.error = true, final);
 	while ((str[i] == ' ') || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	final.a = (int)(answer * sign);
-	final.b = i;
-	return (final);
+	return (final.value = (int)(answer * sign), final.none = false,
+		final.temp = i, final.error = false, final);
 }
 
 void	dup_check(int args, t_list **stack_a)
 {
 	int		i;
 	t_list	*head;
-	long	*arr;
+	t_ints	*arr;
 
 	arr = arr_assign(args);
 	if (!arr)
@@ -53,22 +52,22 @@ void	dup_check(int args, t_list **stack_a)
 	while (head)
 	{
 		i = 0;
-		while (arr[i] != (long)(INT_MAX) + 2)
+		while (!(arr[i].none))
 		{
-			if (arr[i] == head->nb)
+			if (arr[i].value == head->nb.value)
 			{
 				free(arr);
 				ft_error(*stack_a);
 			}
 			i++;
 		}
-		arr[i] = (long)head->nb;
+		arr[i] = head->nb;
 		head = head->next;
 	}
 	free(arr);
 }
 
-int	assign_stack(t_list **head, t_list **stack_a, int content)
+int	assign_stack(t_list **head, t_list **stack_a, t_ints content)
 {
 	t_list	*node;
 
@@ -119,10 +118,10 @@ int	parsing(int ac, char **av, t_list **stack_a)
 		while (av[i][j])
 		{
 			tmp = ft_atoi_ps(av[i], j);
-			if (tmp.b == -1 || assign_stack(&head, stack_a, tmp.a) == -1)
+			if (tmp.error == true || assign_stack(&head, stack_a, tmp) == -1)
 				ft_error(*stack_a);
 			size++;
-			j = tmp.b;
+			j = tmp.temp;
 		}
 		i++;
 	}

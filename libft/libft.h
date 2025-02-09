@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:21:14 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/07 12:43:26 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/09 10:41:03 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 # define LIBFT_H
 
 # include <limits.h>
+# include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef struct two_ints
+{
+	bool			none;
+	bool			error;
+	int				value;
+	int				temp;
+}					t_ints;
 
 typedef struct s_list
 {
 	void			*content;
-	int				nb;
+	t_ints			nb;
 	struct s_list	*next;
 	struct s_list	*prev;
 }					t_list;

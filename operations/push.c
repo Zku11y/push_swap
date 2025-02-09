@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 20:43:04 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/08 20:45:27 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/09 11:00:40 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	push(t_list **stack_a, t_list **stack_b)
 {
-	int tmp;
+	t_ints	tmp;
 
-	tmp = (*stack_a)->nb;
-	(*stack_a)->nb = (*stack_b)->nb;
-	(*stack_b)->nb = tmp;
+	reverse_rotate(stack_b);
+	tmp = (*stack_b)->nb;
+	(*stack_b)->nb = (*stack_a)->nb;
+	(*stack_a)->nb = tmp;
+	rotate(stack_a);
 }

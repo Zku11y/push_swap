@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:43 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/08 21:08:29 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/09 11:13:10 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	lst_print(t_list *head)
 	while (head)
 	{
 		size++;
-		data = head->nb;
+		data = head->nb.value;
 		if (data == 0)
 			ft_printf("\033[1;31m%d\033[0m", 0);
 		else if (data < 0)
@@ -52,13 +52,18 @@ void	lst_print(t_list *head)
 void	stack_b_list(t_list **stack_b, t_list **stack_a, int args)
 {
 	t_list	*head;
+	t_ints	n;
 	int		i;
 
 	head = *stack_b;
 	i = 0;
+	n.value = 0;
+	n.none = true;
+	n.error = false;
+	n.temp = 0;
 	while (i < args)
 	{
-		if (assign_stack(&head, stack_b, 0) == -1)
+		if (assign_stack(&head, stack_b, n) == -1)
 		{
 			ft_lstclear(stack_b, del);
 			ft_error(*stack_a);
@@ -80,13 +85,25 @@ int	main(int ac, char **av)
 	dup_check(args, &stack_a);
 	stack_b_list(&stack_b, &stack_a, args);
 	reverse_rotate(&stack_a);
+	ft_printf("\e[1;42mReverse Rotate :\e[0m\n");
 	lst_print(stack_a);
 	lst_print(stack_b);
 	rotate(&stack_a);
+	ft_printf("\e[1;43mRotate :\e[0m\n");
 	lst_print(stack_a);
 	lst_print(stack_b);
-	// print_list(stack_a);
-	// print_list(stack_b);
+	push(&stack_a, &stack_b);
+	ft_printf("\e[1;45mPush 1 :\e[0m\n");
+	lst_print(stack_a);
+	lst_print(stack_b);
+	push(&stack_a, &stack_b);
+	ft_printf("\e[1;45mPush 2 :\e[0m\n");
+	lst_print(stack_a);
+	lst_print(stack_b);
+	push(&stack_a, &stack_b);
+	ft_printf("\e[1;45mPush 3 :\e[0m\n");
+	lst_print(stack_a);
+	lst_print(stack_b);
 	ft_printf("\e[1;32mthe size of stack a is = \e[0m%d\n", args);
 	ft_printf("\e[1;32mthe size of stack b is = \e[0m%d\n", args);
 	return (0);

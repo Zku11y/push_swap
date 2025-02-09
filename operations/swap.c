@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:05:02 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/08 20:20:55 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/09 10:38:27 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	swap(t_list **stack)
 {
-	int	temp;
+	t_ints	temp;
 
 	temp = (*stack)->nb;
 	(*stack)->nb = ((*stack)->next)->nb;
