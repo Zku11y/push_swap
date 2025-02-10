@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:43 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/09 13:03:55 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/10 00:31:22 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ void	stack_b_list(t_list **stack_b, t_list **stack_a, int args)
 	{
 		if (assign_stack(&head, stack_b, n) == -1)
 		{
-			ft_lstclear(stack_b, del);
+			ft_lstclear_nodes(stack_b);
 			ft_error(*stack_a);
 		}
 		i++;
 	}
 }
+
 int	main(int ac, char **av)
 {
 	t_list	*stack_a;
@@ -107,6 +108,9 @@ int	main(int ac, char **av)
 	lst_print(stack_a);
 	lst_print(stack_b);
 	ft_printf("\e[1;32mthe size of stack a is = \e[0m%d\n", args);
-	ft_printf("\e[1;32mthe size of stack b is = \e[0m%d\n", args);
+	// ft_printf("\e[1;32mthe size of stack b is = \e[0m%d\n", args);
+	check_leaks();
+	ft_lstclear_nodes(&stack_a);
+	ft_lstclear_nodes(&stack_b);
 	return (0);
 }

@@ -1,7 +1,7 @@
 NAME = push_swap
 SRC = libft/*.c printf/*.c parsing_and_main/*.c misc/*.c operations/*.c
 OBJ = $(SRC:.c=.o)
-CC = cc -fsanitize=address -g -Wall -Wextra -Werror
+CC = cc -Wall -Wextra -Werror
 
 
 $(NAME):$(SRC)

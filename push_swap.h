@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:11 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/09 12:59:28 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/10 00:24:43 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 
 # define NONE 2147483649
 
-void	del(void *content);
-void	swap(t_list **stack, char *op);
+void	check_leaks(void);
 t_ints	*arr_assign(int args);
 void	ft_error(t_list *stack);
+void	swap(t_list **stack, char *op);
+void	ft_lstclear_nodes(t_list **lst);
 void	rotate(t_list **stack, char *op);
 t_ints	ft_atoi_ps(const char *str, int i);
 void	dup_check(int args, t_list **stack_a);
