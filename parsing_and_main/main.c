@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:43 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/10 18:51:47 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/11 00:40:17 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	stack_b_list(t_list **stack_b, t_list **stack_a, int args)
 	n.temp = 0;
 	while (i < args)
 	{
-		if (assign_stack(&head, stack_b, n) == -1)
+		if (assign_stack(stack_b, n) == -1)
 		{
 			ft_lstclear_nodes(stack_b);
 			ft_lstclear_nodes(stack_a);
@@ -87,6 +87,8 @@ int	main(int ac, char **av)
 	ft_printf("args = %d, ac = %d\n", args, ac);
 	if (ac <= 2 || args == -1 || stack_a == NULL)
 	{
+		ft_lstclear_nodes(&stack_a);
+		ft_printf("\033[1;32mITS HERE FINALLY FOUND IT\033[0m");
 		check_leaks();
 		return (-1);
 	}

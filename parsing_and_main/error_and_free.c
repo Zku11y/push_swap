@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:38:43 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/10 18:22:20 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/11 00:38:41 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 void	ft_lstclear_nodes(t_list **lst)
 {
 	t_list	*ptr;
+	t_list	*ptr2;
 
-	if (!lst || !(*lst))
-		return ;
-	while (*lst)
+	ptr = *lst;
+	while (ptr != NULL)
 	{
-		ptr = *lst;
-		*lst = (*lst)->next;
-		free(ptr);
+		ptr2 = ptr;
+		ptr = ptr->next;
+		free(ptr2);
 	}
 	*lst = NULL;
 }

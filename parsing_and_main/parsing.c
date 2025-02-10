@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:02:40 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/10 18:08:26 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/11 00:38:28 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,24 @@ void	dup_check(int args, t_list **stack_a)
 	free(arr);
 }
 
-int	assign_stack(t_list **head, t_list **stack_a, t_ints content)
-{
-	t_list	*node;
-
-	node = ft_calloc(1, sizeof(t_list));
-	if (node == NULL)
-		return (-1);
-	node->nb = content;
-	node->next = NULL;
-	if (*stack_a == NULL)
-	{
-		*stack_a = node;
-		*head = *stack_a;
-	}
-	else
-	{
-		(*head)->next = node;
-		*head = node;
-		return (0);
-	}
+int assign_stack(t_list **stack, t_ints content) {
+    t_list *node = malloc(sizeof(t_list)); // Allocate memory
+    if (!node) {
+        // Handle allocation failure
+        return (-1);
+    }
+    node->nb = content;
+    node->next = NULL;
+    // Add node to the stack
+    if (*stack == NULL) {
+        *stack = node;
+    } else {
+        t_list *current = *stack;
+        while (current->next != NULL) {
+            current = current->next;
+        }
+        current->next = node;
+    }
 	return (0);
 }
 int	check_empty(char *str)
@@ -104,11 +102,9 @@ int	parsing(int ac, char **av, t_list **stack_a)
 	int		j;
 	int		size;
 	t_ints	tmp;
-	t_list	*head;
 
 	i = 1;
 	size = 0;
-	head = *stack_a;
 	while (i < ac)
 	{
 		j = 0;
@@ -117,7 +113,7 @@ int	parsing(int ac, char **av, t_list **stack_a)
 		while (av[i][j])
 		{
 			tmp = ft_atoi_ps(av[i], j);
-			if (tmp.error == true || assign_stack(&head, stack_a, tmp) == -1)
+			if (tmp.error == true || assign_stack(stack_a, tmp) == -1)
 				return (ft_lstclear_nodes(stack_a), ft_error(NULL), -1);
 			size++;
 			j = tmp.temp;
