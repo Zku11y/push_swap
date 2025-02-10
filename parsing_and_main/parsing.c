@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:02:40 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/09 12:40:23 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/10 18:08:26 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	dup_check(int args, t_list **stack_a)
 
 	arr = arr_assign(args);
 	if (!arr)
-		ft_error(*stack_a);
+		return (ft_lstclear_nodes(stack_a), ft_error(NULL));
 	head = *stack_a;
 	while (head)
 	{
@@ -55,10 +55,7 @@ void	dup_check(int args, t_list **stack_a)
 		while (!(arr[i].none))
 		{
 			if (arr[i].value == head->nb.value)
-			{
-				free(arr);
-				ft_error(*stack_a);
-			}
+				return (free(arr), ft_lstclear_nodes(stack_a), ft_error(NULL));
 			i++;
 		}
 		arr[i] = head->nb;
@@ -74,17 +71,19 @@ int	assign_stack(t_list **head, t_list **stack_a, t_ints content)
 	node = ft_calloc(1, sizeof(t_list));
 	if (node == NULL)
 		return (-1);
-	if (*stack_a == NULL)
-	{
-		node->nb = content;
-		*stack_a = node;
-		*head = *stack_a;
-		return (0);
-	}
 	node->nb = content;
 	node->next = NULL;
-	(*head)->next = node;
-	*head = node;
+	if (*stack_a == NULL)
+	{
+		*stack_a = node;
+		*head = *stack_a;
+	}
+	else
+	{
+		(*head)->next = node;
+		*head = node;
+		return (0);
+	}
 	return (0);
 }
 int	check_empty(char *str)
@@ -114,12 +113,12 @@ int	parsing(int ac, char **av, t_list **stack_a)
 	{
 		j = 0;
 		if (check_empty(av[i]) == -1)
-			return (ft_error(*stack_a), -1);
+			return (ft_lstclear_nodes(stack_a), ft_error(NULL), -1);
 		while (av[i][j])
 		{
 			tmp = ft_atoi_ps(av[i], j);
 			if (tmp.error == true || assign_stack(&head, stack_a, tmp) == -1)
-				return (ft_error(*stack_a), -1);
+				return (ft_lstclear_nodes(stack_a), ft_error(NULL), -1);
 			size++;
 			j = tmp.temp;
 		}

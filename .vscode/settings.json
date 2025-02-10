@@ -3,6 +3,7 @@
       "editor.defaultFormatter": "keyhr.42-c-format"
     },
     "files.associations": {
-      "push_swap.h": "c"
+      "push_swap.h": "c",
+      "libft.h": "c"
     }
 }
