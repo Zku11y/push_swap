@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:02:40 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/11 00:38:28 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/11 21:46:58 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,35 @@ t_ints	ft_atoi_ps(const char *str, int i)
 void	dup_check(int args, t_list **stack_a)
 {
 	int		i;
+	int		j;
 	t_list	*head;
 	t_ints	*arr;
 
-	arr = arr_assign(args);
-	if (!arr)
+	arr = malloc(args * sizeof(t_ints));
+	if (!arr || !(*stack_a))
 		return (ft_lstclear_nodes(stack_a), ft_error(NULL));
 	head = *stack_a;
-	while (head)
-	{
+	// if (head == NULL)
+	// 	ft_printf("THE HEAD EQUALS NULL\n");
+	j = 0;
+	while (head != NULL && j != args)
+	{		
 		i = 0;
-		while (!(arr[i].none))
+		while (i < j)
 		{
 			if (arr[i].value == head->nb.value)
-				return (free(arr), ft_lstclear_nodes(stack_a), ft_error(NULL));
+			{
+				// free(arr);
+				// ft_lstclear_nodes(stack_a);
+				ft_error(*stack_a);
+				return;
+				return (ft_lstclear_nodes(stack_a), ft_error(NULL));
+			}
 			i++;
 		}
 		arr[i] = head->nb;
 		head = head->next;
+		j++;
 	}
 	free(arr);
 }
@@ -72,6 +83,7 @@ int assign_stack(t_list **stack, t_ints content) {
     }
     node->nb = content;
     node->next = NULL;
+	node->content = NULL;
     // Add node to the stack
     if (*stack == NULL) {
         *stack = node;
@@ -82,6 +94,7 @@ int assign_stack(t_list **stack, t_ints content) {
         }
         current->next = node;
     }
+	lst_print(*stack);
 	return (0);
 }
 int	check_empty(char *str)
@@ -112,11 +125,13 @@ int	parsing(int ac, char **av, t_list **stack_a)
 			return (ft_lstclear_nodes(stack_a), ft_error(NULL), -1);
 		while (av[i][j])
 		{
+			// ft_printf("\e[1;31mbefore assign j = : %d, the value inside it : %d\n\e[0m", j, av[i][j]);
 			tmp = ft_atoi_ps(av[i], j);
 			if (tmp.error == true || assign_stack(stack_a, tmp) == -1)
 				return (ft_lstclear_nodes(stack_a), ft_error(NULL), -1);
 			size++;
 			j = tmp.temp;
+			// ft_printf("\e[1;32mafter assign  j = : %d, the value inside it : %d\n\e[0m", j, av[i][j]);
 		}
 		i++;
 	}

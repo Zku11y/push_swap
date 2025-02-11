@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:38:43 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/11 00:38:41 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/11 21:47:04 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ void	ft_lstclear_nodes(t_list **lst)
 void	ft_error(t_list *stack)
 {
 	if (stack)
+		// ft_printf("stack is here");
 		ft_lstclear_nodes(&stack);
 	write(1, "\e[1;31mError\e[0m", 17);
-	check_leaks();
+	// check_leaks();
 	exit(EXIT_FAILURE);
 }

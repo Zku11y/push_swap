@@ -6,11 +6,12 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:43 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/11 00:40:17 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/11 21:47:51 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+#include <fcntl.h>
 
 void	print_list(t_list *head)
 {
@@ -73,6 +74,11 @@ void	stack_b_list(t_list **stack_b, t_list **stack_a, int args)
 	}
 }
 
+void checksss()
+{
+	system("leaks push_swap");
+}
+
 int	main(int ac, char **av)
 {
 	t_list	*stack_a;
@@ -84,19 +90,21 @@ int	main(int ac, char **av)
 	stack_a = NULL;
 	stack_b = NULL;
 	args = parsing(ac, av, &stack_a);
-	ft_printf("args = %d, ac = %d\n", args, ac);
+	// ft_printf("args = %d, ac = %d\n", args, ac);
+	dup_check(args, &stack_a);
+	ft_lstclear_nodes(&stack_a);
+	// ft_lstclear_nodes(&stack_a);
 	if (ac <= 2 || args == -1 || stack_a == NULL)
 	{
-		ft_lstclear_nodes(&stack_a);
-		ft_printf("\033[1;32mITS HERE FINALLY FOUND IT\033[0m");
-		check_leaks();
+		// check_leaks();
+		if (!stack_a)
+		// lst_print(stack_a);
 		return (-1);
 	}
-	dup_check(args, &stack_a);
+	atexit(checksss);
 	// stack_b_list(&stack_b, &stack_a, args);
 	// reverse_rotate(&stack_a, "rra");
 	// ft_printf("\e[1;42mReverse Rotate :\e[0m\n");
-	// lst_print(stack_a);
 	// lst_print(stack_b);
 	// rotate(&stack_a, "ra");
 	// ft_printf("\e[1;43mRotate :\e[0m\n");
@@ -116,8 +124,7 @@ int	main(int ac, char **av)
 	// lst_print(stack_b);
 	// ft_printf("\e[1;32mthe size of stack a is = \e[0m%d\n", args);
 	// ft_printf("\e[1;32mthe size of stack b is = \e[0m%d\n", args);
-	ft_lstclear_nodes(&stack_a);
-	ft_lstclear_nodes(&stack_b);
-	check_leaks();
+	// ft_lstclear_nodes(&stack_b);
+	// check_leaks();
 	return (0);
 }
