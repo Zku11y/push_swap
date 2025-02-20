@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:43 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/11 21:47:51 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/20 15:43:47 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	stack_b_list(t_list **stack_b, t_list **stack_a, int args)
 	}
 }
 
-void checksss()
+void	checksss(void)
 {
 	system("leaks push_swap");
 }
@@ -87,21 +87,27 @@ int	main(int ac, char **av)
 	int		args;
 
 	i = 1;
+	atexit(checksss);
 	stack_a = NULL;
 	stack_b = NULL;
 	args = parsing(ac, av, &stack_a);
-	// ft_printf("args = %d, ac = %d\n", args, ac);
-	dup_check(args, &stack_a);
-	ft_lstclear_nodes(&stack_a);
-	// ft_lstclear_nodes(&stack_a);
+	stack_b = stack_a;
+	while (stack_b)
+	{
+		stack_b = stack_a->next;
+		free(stack_a);
+		stack_a = stack_b;
+	}
+		// ft_printf("args = %d, ac = %d\n", args, ac);
+		// dup_check(args, &stack_a);
+		// ft_lstclear_nodes(&stack_a);
+		ft_lstclear_nodes(&stack_a);
 	if (ac <= 2 || args == -1 || stack_a == NULL)
 	{
-		// check_leaks();
 		if (!stack_a)
-		// lst_print(stack_a);
-		return (-1);
+			return (-1);
 	}
-	atexit(checksss);
+	ft_lstclear_nodes(&stack_a);
 	// stack_b_list(&stack_b, &stack_a, args);
 	// reverse_rotate(&stack_a, "rra");
 	// ft_printf("\e[1;42mReverse Rotate :\e[0m\n");

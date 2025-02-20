@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:02:40 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/11 21:46:58 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/20 15:49:33 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ int assign_stack(t_list **stack, t_ints content) {
     t_list *node = malloc(sizeof(t_list)); // Allocate memory
     if (!node) {
         // Handle allocation failure
-        return (-1);
-    }
+		ft_lstclear_nodes(stack);
+		return (-1);
+	}
     node->nb = content;
     node->next = NULL;
 	node->content = NULL;
@@ -94,7 +95,6 @@ int assign_stack(t_list **stack, t_ints content) {
         }
         current->next = node;
     }
-	lst_print(*stack);
 	return (0);
 }
 int	check_empty(char *str)
@@ -122,13 +122,13 @@ int	parsing(int ac, char **av, t_list **stack_a)
 	{
 		j = 0;
 		if (check_empty(av[i]) == -1)
-			return (ft_lstclear_nodes(stack_a), ft_error(NULL), -1);
+			return (ft_lstclear_nodes(stack_a), free(stack_a),ft_error(NULL), -1);
 		while (av[i][j])
 		{
 			// ft_printf("\e[1;31mbefore assign j = : %d, the value inside it : %d\n\e[0m", j, av[i][j]);
-			tmp = ft_atoi_ps(av[i], j);
+			tmp = ft_atoi_ps(av[i], j); 
 			if (tmp.error == true || assign_stack(stack_a, tmp) == -1)
-				return (ft_lstclear_nodes(stack_a), ft_error(NULL), -1);
+				return (ft_lstclear_nodes(stack_a), free(stack_a),ft_error(NULL), -1);
 			size++;
 			j = tmp.temp;
 			// ft_printf("\e[1;32mafter assign  j = : %d, the value inside it : %d\n\e[0m", j, av[i][j]);
