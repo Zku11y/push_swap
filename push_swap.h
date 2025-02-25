@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:11 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/09 10:42:41 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/25 18:12:11 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,10 @@
 # include "printf/ft_printf.h"
 # include <stdbool.h>
 
-# define NONE 2147483649
-
-void	del(void *content);
-void	swap(t_list **stack);
-t_ints	*arr_assign(int args);
-void	rotate(t_list **stack);
-void	ft_error(t_list *stack);
-void	reverse_rotate(t_list **stack);
-t_ints	ft_atoi_ps(const char *str, int i);
-void	dup_check(int args, t_list **stack_a);
-void	push(t_list **stack_a, t_list **stack_b);
-int		parsing(int ac, char **av, t_list **stack_a);
-int		assign_stack(t_list **head, t_list **stack_a, t_ints content);
+int num_check(char *str);
+int skip_space(int i, char *str);
+int skip_numbers(int i, char *str);
+int ft_atoi_mod(const char *str);
+int assign_manager(char *str, t_list **stack_a, t_list **stack_b);
+t_list *ft_lstnew_mod(int number);
 #endif
