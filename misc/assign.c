@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 17:30:21 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/25 18:14:10 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/26 15:31:51 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,17 @@ int assign_manager(char *str, t_list **stack_a, t_list **stack_b)
     *stack_b = NULL;
     while (str[i])
     {
-        num = ft_atoi_mod(str);
-        tmp = ft_lstnew_mod(num);
+        i = skip_space(i, str);
+		if (!str[i])
+			break;
+		num = ft_atoi_mod(str + i);
+		tmp = ft_lstnew_mod(num);
         if(tmp == NULL)
         {
             ft_lstclear(stack_a, del);
             exit(EXIT_FAILURE);
         }
         ft_lstadd_back(stack_a, tmp);
-        i = skip_space(i, str);
         i = skip_numbers(i, str);
     }
     return 0;

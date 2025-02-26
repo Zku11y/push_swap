@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:11 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/25 18:12:11 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/25 18:30:04 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "printf/ft_printf.h"
 # include <stdbool.h>
 
+void del(void *content);
 int num_check(char *str);
 int skip_space(int i, char *str);
 int skip_numbers(int i, char *str);
