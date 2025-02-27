@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:19:53 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/25 17:29:40 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/27 11:54:32 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ int skip_space(int i, char *str)
 
 int skip_numbers(int i, char *str)
 {
-    while(str[i] >= '0' && str[i] <= '9')
+    if (str[i] == '-' || str[i] == '+')
+        i++;
+    while (str[i] >= '0' && str[i] <= '9')
         i++;
     return (i);
 }

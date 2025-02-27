@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:21:14 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/25 18:03:00 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/27 13:30:39 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_list
 	int number;
 	void *content;
 	struct s_list *next;
-	struct s_list	*prev;
+	struct s_list *prev;
 }					t_list;
 
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);

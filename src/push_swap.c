@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:07:02 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/25 18:34:18 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/27 16:11:04 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,13 @@ int main(int ac, char **av)
     while (i < ac)
     {
         num_check(av[i]);
-        assign_manager(av[i], &stack_a, &stack_b);
+        assign_manager(av[i], &stack_a);
         ft_printf("av[i] = %s\n", av[i]);
         i++;
     }
-    lst_print(stack_a);
-    ft_lstclear(&stack_a, del);
-    return 0;
+	prev_assign(&stack_a);
+	algo_manager(&stack_a);
+	lst_print(stack_a);
+	ft_lstclear(&stack_a, del);
+	return 0;
 }

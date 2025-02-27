@@ -1,5 +1,5 @@
 NAME = push_swap
-SRC = libft/*.c printf/*.c src/*.c misc/*.c
+SRC = libft/*.c printf/*.c src/*.c algorithm/*.c mods/*.c opps/*.c
 OBJ = $(SRC:.c=.o)
 CC = cc -g -Wall -Wextra -Werror
 
