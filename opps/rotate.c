@@ -6,13 +6,13 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:10:25 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/27 16:02:31 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/27 17:20:28 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void rotate(t_list **stack)
+void rotate(t_list **stack, char name)
 {
     t_list *old_head;
     t_list *old_tail;
@@ -26,8 +26,9 @@ void rotate(t_list **stack)
     old_tail = ft_lstlast(*stack);
     old_tail->next = old_head;
     old_head->prev = old_tail;
+    ft_printf("r%c\n", name);
 }
-void rev_rotate(t_list **stack)
+void rev_rotate(t_list **stack, char name)
 {
     t_list *old_head;
     t_list *old_tail;
@@ -39,4 +40,5 @@ void rev_rotate(t_list **stack)
     old_tail->next = old_head;
     old_head->prev = old_tail;
     *stack = old_tail;
+    ft_printf("rr%c\n", name);
 }
