@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manager.c                                          :+:      :+:    :+:   */
+/*   misc1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 11:28:52 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/28 11:49:44 by mdakni           ###   ########.fr       */
+/*   Created: 2025/02/28 10:27:09 by mdakni            #+#    #+#             */
+/*   Updated: 2025/02/28 11:42:08 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void algo_manager(t_list **stack_a)
+t_list *find_smallest_nb(t_list **stack)
 {
-    // check_sort(stack_a);
-    if (check_sort(stack_a) == -1)
-        exit(EXIT_SUCCESS);
-    check_rev_sort(stack_a);
+    int nb;
+    t_list *current;
+    t_list *small;
+    current = *stack;
+    small = current;
+    nb = current->number;
+    while (current)
+    {
+        if (current->number < nb)
+        {
+            nb = current->number;
+            small = current;
+        }
+        current = current->next;
+    }
+    return (small);
 }
