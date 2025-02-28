@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 13:11:18 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/28 11:51:06 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/02/28 15:49:13 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,53 @@ void check_dup(t_list **stack)
     ft_printf("\e[1;44mno dups found!\e[0m\n");
     free(list);
 }
-void check_rev_sort(t_list **stack)
+int check_rev_sort(t_list **stack)
 {
     int tmp;
-    t_list *iter;
+    int biggest;
+    t_list *big;
 
     if (!stack || !(*stack) || !((*stack)->next))
-        return;
-    iter = *stack;
-    while(iter->next)
+        return(-1);
+    big = find_biggest_nb(stack);
+    tmp = big->number;
+    biggest = tmp;
+    while (big)
     {
-        tmp = iter->number;
-        if (tmp < (iter->next)->number)
-        {
-            ft_printf("\e[1;31mnot reverse sorted!\e[0m\n");
-            return;
-        }
-        iter = iter->next;
+        if(big->number > tmp)
+            return (ft_printf("\e[1;31mnot  reverse sorted!\e[0m\n"));
+        tmp = big->number;
+        big = big->next;
     }
-    ft_printf("\e[1;32mits reverse sorted!\e[0m\n");
+    big = *stack;
+    while(big->number != biggest)
+    {
+        if(big->number > tmp)
+            return (ft_printf("\e[1;31mnot reverse sorted!\e[0m\n"));
+        tmp = big->number;
+        big = big->next;
+    }
+    return (ft_printf("\e[1;31mreverse sorted!\e[0m\n") ,rot_stack(stack, false), ft_lstclear(stack, del), -1);
 }
+// {
+//     int tmp;
+//     t_list *iter;
+
+//     if (!stack || !(*stack) || !((*stack)->next))
+//         return;
+//     iter = *stack;
+//     while(iter->next)
+//     {
+//         tmp = iter->number;
+//         if (tmp < (iter->next)->number)
+//         {
+//             ft_printf("\e[1;31mnot reverse sorted!\e[0m\n");
+//             return;
+//         }
+//         iter = iter->next;
+//     }
+//     ft_printf("\e[1;32mits reverse sorted!\e[0m\n");
+// }
 int check_sort(t_list **stack)
 {
     int tmp;
@@ -86,21 +113,24 @@ int check_sort(t_list **stack)
         tmp = small->number;
         small = small->next;
     }
-    return (ft_printf("\e[1;32mits sorted!\e[0m\n"), rot_stack(stack), ft_lstclear(stack, del),-1);
+    return (rot_stack(stack, true), ft_lstclear(stack, del), -1);
 }
-void rot_stack(t_list **stack)
+void rot_stack(t_list **stack, bool min)
 {
-    t_list *smallest;
+    t_list *num;
     t_list *current;
     int pos;
     int size;
 
     lst_print(*stack);
     current = *stack;
-    smallest = find_smallest_nb(stack);
+    if(min == true)
+        num = find_smallest_nb(stack);
+    else
+        num = find_biggest_nb(stack);
     size = ft_lstsize(*stack);
     pos = 1;
-    while (current && current != smallest)
+    while (current && current != num)
     {
         pos++;
         current = current->next;
