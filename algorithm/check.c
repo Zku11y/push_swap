@@ -6,27 +6,27 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 13:11:18 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/04 11:15:18 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:58:35 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int check_sort(t_list **stack)
+int check_sort(t_list **stack, t_list **stack_b)
 {
     int tmp;
     int smallest;
     t_list *small;
 
     if (!stack || !(*stack) || !((*stack)->next))
-        return(0);
+        return(clear_exit(stack, stack_b, EXIT_FAILURE), 0);
     small = find_smallest_nb(stack);
     tmp = small->number;
     smallest = tmp;
     while (small)
     {
         if(small->number < tmp)
-            return (ft_printf("\e[1;31mnot sorted!\e[0m\n"), 1);
+            return (1);
         tmp = small->number;
         small = small->next;
     }
@@ -34,7 +34,7 @@ int check_sort(t_list **stack)
     while(small->number != smallest)
     {
         if(small->number < tmp)
-            return (ft_printf("\e[1;31mnot sorted!\e[0m\n"), 1);
+            return (1);
         tmp = small->number;
         small = small->next;
     }
@@ -49,7 +49,7 @@ void check_dup(t_list **stack)
 
     list = malloc(ft_lstsize(*stack) * sizeof(t_list));
     if (!list)
-        return(ft_lstclear(stack, del), exit(EXIT_FAILURE));
+        return(clear_exit(stack, NULL, 1));
     tmp = *stack;
     size = 0;
     while (tmp)
@@ -58,14 +58,13 @@ void check_dup(t_list **stack)
         while(i < size)
         {
             if (tmp->number == list[i])
-                return(ft_printf("\e[1;45mdup found!\e[0m\n") ,free(list), ft_lstclear(stack, del), exit(EXIT_FAILURE));
+                return(free(list), clear_exit(stack, NULL, 1));
             i++;
         }
         list[i] = tmp->number;
         size++;
         tmp = tmp->next;
     }
-    ft_printf("\e[1;44mno dups found!\e[0m\n");
     free(list);
 }
 int check_rev_sort(t_list **stack)
@@ -82,7 +81,7 @@ int check_rev_sort(t_list **stack)
     while (big)
     {
         if(big->number > tmp)
-            return (ft_printf("\e[1;31mnot  reverse sorted!\e[0m\n"), 1);
+            return (1);
         tmp = big->number;
         big = big->next;
     }
@@ -90,11 +89,11 @@ int check_rev_sort(t_list **stack)
     while(big->number != biggest)
     {
         if(big->number > tmp)
-            return (ft_printf("\e[1;31mnot reverse sorted!\e[0m\n"), 1);
+            return (1);
         tmp = big->number;
         big = big->next;
     }
-    return (ft_printf("reverse sorted!"), rot_stack(stack, false), 0);
+    return (rot_stack(stack, false), 0);
 }
 void rot_and_rev(int pos, int size, t_list **stack)
 {
@@ -135,5 +134,4 @@ void rot_stack(t_list **stack, bool min)
         current = current->next;
     }
     rot_and_rev(pos, size, stack);
-    // lst_print(*stack);
 }

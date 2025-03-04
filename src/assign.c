@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 17:30:21 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/27 13:41:15 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:49:59 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ int assign_manager(char *str, t_list **stack_a)
 		num = ft_atoi_mod(str + i);
 		tmp = ft_lstnew_mod(num);
         if(tmp == NULL)
-        {
-            ft_lstclear(stack_a, del);
-            exit(EXIT_FAILURE);
-        }
+            clear_exit(stack_a, NULL, EXIT_FAILURE);
         ft_lstadd_back(stack_a, tmp);
         i = skip_numbers(i, str);
     }

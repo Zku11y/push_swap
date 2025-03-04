@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:28:52 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/04 11:14:38 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:54:37 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void sort_checker(t_list **stack_a)
 {
-    int check;
     int size;
     t_list *stack_b;
 
@@ -22,8 +21,7 @@ void sort_checker(t_list **stack_a)
     stack_b = NULL;
     if (trunc_fd() == -1)
         clear_exit(stack_a, &stack_b, EXIT_FAILURE);
-    check = check_sort(stack_a);
-    if (check == 0)
+    if (check_sort(stack_a, &stack_b) == 0)
     {
         file_clear(stack_a, &stack_b);
         clear_exit(stack_a, &stack_b, EXIT_SUCCESS);
@@ -55,6 +53,8 @@ int trunc_fd()
 }
 void clear_exit(t_list **stack_a, t_list **stack_b,int exit_code)
 {
+    if (exit_code == EXIT_FAILURE)
+        ft_printf("\e[1;31mError\e[0m\n");
     ft_lstclear(stack_a, del);
     if (stack_b)
         ft_lstclear(stack_b, del);
@@ -68,7 +68,7 @@ void file_clear(t_list **stack_a, t_list **stack_b)
 
     fd = open("./opps/operations.txt", O_RDWR | O_CREAT, 0777);
     if (fd == -1)
-        return(ft_printf("\e[1;31mopen file error...\e[0m\n"), clear_exit(stack_a, stack_b, EXIT_FAILURE));
+        return(clear_exit(stack_a, stack_b, EXIT_FAILURE));
     str = get_next_line(fd);
     str2 = get_next_line(fd);
     if(str && !str2)

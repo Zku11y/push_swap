@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:19:53 by mdakni            #+#    #+#             */
-/*   Updated: 2025/02/27 16:15:58 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:49:10 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ int	num_check(char *str)
             i++;
             if (!ft_isdigit(str[i]))
             {
-                ft_printf("\e[1;3;44mSign Problem\e[0m");
+                ft_printf("\e[1;31mError\e[0m\n");
                 exit(EXIT_FAILURE);
             }
         }
         i = skip_numbers(i, str);
         if ((str[i] != '\0') && (str[i] != ' '))
         {
-            ft_printf("\e[1;3;45mNot a Number, Space or End of String\e[0m");
+            ft_printf("\e[1;31mError\e[0m\n");
             exit(EXIT_FAILURE);
         }
     }

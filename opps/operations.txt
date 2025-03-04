@@ -1,7 +1,5 @@
 rra
 pa
-rra
-pa
-rra
-pb
+ra
+sa
 pb

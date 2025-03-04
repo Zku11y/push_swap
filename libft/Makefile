@@ -22,8 +22,8 @@ all:$(NAME)
 $(NAME):$(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-bonus: $(BOBJS)
-	ar rcs $(NAME) $(BOBJS)
+bonus: $(OBJS) $(BOBJS)
+	ar rcs $(NAME) $(OBJS) $(BOBJS)
 
 %.o: %.c libft.h
 	$(CC) $(FLAGS) -c $< -o $@

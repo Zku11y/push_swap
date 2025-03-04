@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:07:02 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/03 15:38:01 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:57:10 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int main(int ac, char **av)
 	check_dup(&stack_a);
 	prev_assign(&stack_a);
 	sort_checker(&stack_a);
-	// lst_print(stack_a);
 	ft_lstclear(&stack_a, del);
 	return 0;
 }

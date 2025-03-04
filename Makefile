@@ -1,11 +1,44 @@
 NAME = push_swap
-SRC = libft/*.c printf/*.c src/*.c algorithm/*.c mods/*.c opps/*.c misc/*.c get_next_line/*.c
+
+
+CC = cc
+LIBFT = libft/libft.a
+GNL_DIR = get_next_line
+PRINTF = printf/libftprintf.a
+CFLAGS = -g -Wall -Wextra -Werror
+
+SRC = src/assign.c src/parse.c src/push_swap.c \
+	  opps/push.c opps/rotate.c opps/swap.c \
+	  mods/list_mods.c misc/misc1.c \
+	  get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
+	  algorithm/check.c algorithm/five.c algorithm/four.c algorithm/manager.c algorithm/three.c
+
 OBJ = $(SRC:.c=.o)
-CC = cc -g -Wall -Wextra -Werror
 
+all: $(NAME)
 
-$(NAME):$(SRC)
-	$(CC) $(SRC) -o $(NAME)
+$(NAME): $(OBJ) $(LIBFT) $(PRINTF)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
 
-t:
-	./push_swap 1 2 3 4 5
+$(LIBFT):
+	make -C libft bonus
+
+$(PRINTF):
+	make -C printf
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJ)
+	make -C libft clean
+	make -C printf clean
+
+fclean: clean
+	rm -f $(NAME)
+	make -C libft fclean
+	make -C printf fclean
+
+re: fclean all
+
+.PHONY: all clean fclean re

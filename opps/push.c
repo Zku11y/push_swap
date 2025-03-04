@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:10:26 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/04 11:03:35 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:56:04 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void push(t_list **from, t_list **to, char *name)
     if (*to)
         (*to)->prev = tmp;
     *to = tmp;
-    fd = open("./opps/operations.txt", O_RDWR | O_APPEND);
+    fd = open("./opps/operations.txt", O_RDWR | O_CREAT |O_APPEND);
     if (fd == -1)
         return(ft_printf("\e[1;31mopen file error...\e[0m\n"), clear_exit(from, to,EXIT_FAILURE));
     write(fd, name, 3);
