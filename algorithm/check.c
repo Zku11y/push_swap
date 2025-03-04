@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 13:11:18 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/03 13:24:23 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/03 16:33:36 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int check_sort(t_list **stack)
     t_list *small;
 
     if (!stack || !(*stack) || !((*stack)->next))
-        return(-1);
+        return(0);
     small = find_smallest_nb(stack);
     tmp = small->number;
     smallest = tmp;
@@ -38,7 +38,7 @@ int check_sort(t_list **stack)
         tmp = small->number;
         small = small->next;
     }
-    return (ft_printf("sorted!"), 0);
+    return (rot_stack(stack, true), 0);
 }
 void check_dup(t_list **stack)
 {
@@ -75,14 +75,14 @@ int check_rev_sort(t_list **stack)
     t_list *big;
 
     if (!stack || !(*stack) || !((*stack)->next))
-        return(-1);
+        return(0);
     big = find_biggest_nb(stack);
     tmp = big->number;
     biggest = tmp;
     while (big)
     {
         if(big->number > tmp)
-            return (ft_printf("\e[1;31mnot  reverse sorted!\e[0m\n"));
+            return (ft_printf("\e[1;31mnot  reverse sorted!\e[0m\n"), 1);
         tmp = big->number;
         big = big->next;
     }
@@ -90,11 +90,11 @@ int check_rev_sort(t_list **stack)
     while(big->number != biggest)
     {
         if(big->number > tmp)
-            return (ft_printf("\e[1;31mnot reverse sorted!\e[0m\n"));
+            return (ft_printf("\e[1;31mnot reverse sorted!\e[0m\n"), 1);
         tmp = big->number;
         big = big->next;
     }
-    return (ft_printf("reverse sorted!") ,rot_stack(stack, false), ft_lstclear(stack, del), -1);
+    return (ft_printf("reverse sorted!"), rot_stack(stack, false), 0);
 }
 void rot_and_rev(int pos, int size, t_list **stack)
 {
@@ -121,7 +121,7 @@ void rot_stack(t_list **stack, bool min)
     int pos;
     int size;
 
-    lst_print(*stack);
+    // lst_print(*stack);
     current = *stack;
     if(min == true)
         num = find_smallest_nb(stack);
@@ -135,5 +135,5 @@ void rot_stack(t_list **stack, bool min)
         current = current->next;
     }
     rot_and_rev(pos, size, stack);
-    lst_print(*stack);
+    // lst_print(*stack);
 }
