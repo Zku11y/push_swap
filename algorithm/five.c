@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:48:15 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/03 18:07:36 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/04 09:25:28 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void handle_5(t_list **stack_a, t_list **stack_b)
     smallest = find_smallest_nb(stack_a);
     size = ft_lstsize(*stack_a);
     rot_stack(stack_a, true);
-    push(stack_a, stack_b);
+    push(stack_a, stack_b, "pa\n");
     ft_printf("\nafter first push stack a = ");
     lst_print(*stack_a);
     ft_printf("\nafter first push stack b = ");
     lst_print(*stack_b);
     handle_4(stack_a, stack_b);
-    push(stack_b, stack_a);
+    push(stack_b, stack_a, "pb\n");
     ft_printf("\nafter second push stack a = ");
     lst_print(*stack_a);
     ft_printf("\nafter second push stack b = ");

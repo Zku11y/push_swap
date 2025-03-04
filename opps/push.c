@@ -6,15 +6,16 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:10:26 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/03 16:19:15 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/04 11:03:35 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void push(t_list **from, t_list **to)
+void push(t_list **from, t_list **to, char *name)
 {
     t_list *tmp;
+    int fd;
 
     if (!from || !to || !(*from))
         return;
@@ -26,4 +27,9 @@ void push(t_list **from, t_list **to)
     if (*to)
         (*to)->prev = tmp;
     *to = tmp;
+    fd = open("./opps/operations.txt", O_RDWR | O_APPEND);
+    if (fd == -1)
+        return(ft_printf("\e[1;31mopen file error...\e[0m\n"), clear_exit(from, to,EXIT_FAILURE));
+    write(fd, name, 3);
+    close(fd);
 }

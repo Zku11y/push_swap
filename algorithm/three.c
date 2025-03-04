@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:47:27 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/03 16:47:17 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/04 09:25:06 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 void handle_smallest(t_list **stack, t_list *biggest)
 {
     if (biggest->next == NULL)
-        swap(stack, 'a');
+        swap(stack, NULL,"sa\n");
     else
-        rotate(stack, 'a');
+        rotate(stack, NULL,"ra\n");
 }
 void handle_middle(t_list **stack, t_list *smallest)
 {
     if (smallest->next == NULL)
     {
-        rotate(stack, 'a');
-        swap(stack, 'a');
+        rotate(stack, NULL,"ra\n");
+        swap(stack, NULL, "sa\n");
     }
 }
 void handle_biggest(t_list **stack, t_list *smallest)
 {
     if (smallest->next == NULL)
-        rev_rotate(stack, 'a');
+        rev_rotate(stack, NULL, "rra\n");
     else
     {
-        rev_rotate(stack, 'a');
-        swap(stack, 'a');
+        rev_rotate(stack, NULL,"rra\n");
+        swap(stack, NULL,"sa\n");
     }
 }
 
@@ -47,7 +47,6 @@ void handle_3(t_list **stack)
     tmp = *stack;
     smallest = find_smallest_nb(stack);
     biggest = find_biggest_nb(stack);
-    // ft_printf("\e[1;31msmallest = %d, biggest = %d, tmp->next = %d\e[0m\n", smallest->number, biggest->number, (tmp->next)->number);
     if (smallest == tmp->next)
         handle_smallest(stack, biggest);
     else if (biggest == tmp->next)
