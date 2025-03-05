@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:11 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/04 15:52:46 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/05 15:57:46 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,18 @@ void    swap(t_list **stack, t_list **stack_b, char *name);
 void    rotate(t_list **stack, t_list **stack_b,char *name);
 void    rev_rotate(t_list **stack, t_list **stack_b, char *name);
 
-// Algorithm functions
+// Small Algorithm functions
 void    handle_3(t_list **stack);
-int     assign_manager(char *str, t_list **stack_a);
 void    handle_4(t_list **stack_a, t_list **stack_b);
 void    handle_5(t_list **stack_a, t_list **stack_b);
+int     assign_manager(char *str, t_list **stack_a);
+
+// Big Algorithm functions (THE MOST IMPORTANT PART OF THE CODE)
+void    algo_manager(t_list **stack_a, t_list **stack_b);
+t_list  *cheapest_manager(t_list **stack_a, t_list **stack_b);
+t_list  *b_position(t_list **stack_b, int a);
+int     calc_moves(t_list **stack, t_list *current);
+t_list  *find_cheapest(t_list **stack, int *arr);
 
 // checker functions
 void    check_dup(t_list **stack);
