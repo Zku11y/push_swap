@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:10:20 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/06 11:54:53 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/06 12:22:04 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void swap(t_list **stack, t_list **stack_b, char *name)
     write(fd, "s", 1);
     write(fd, name, 1);
     write(fd, "\n", 1);
-    ft_printf("s%s\n", name);
+    // ft_printf("s%s\n", name);
     close(fd);
 }

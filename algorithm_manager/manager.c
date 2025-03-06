@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:28:52 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/06 11:49:43 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/06 14:24:15 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void sort_checker(t_list **stack_a)
             algo_manager(stack_a, &stack_b);
         ft_lstclear(&stack_b, del);
     }
-    // file_clear(stack_a, &stack_b);
+    file_clear(stack_a, &stack_b);
 }
 int trunc_fd()
 {
@@ -62,50 +62,4 @@ void clear_exit(t_list **stack_a, t_list **stack_b,int exit_code)
         ft_lstclear(stack_b, del);
     exit(exit_code);
 }
-void file_clear(t_list **stack_a, t_list **stack_b)
-{
-    int fd;
-    char *str;
-    char *str2;
 
-    fd = open("./opps/operations.txt", O_RDWR | O_CREAT, 0644);
-    if (fd == -1)
-        return(clear_exit(stack_a, stack_b, EXIT_FAILURE));
-    str = get_next_line(fd);
-    str2 = get_next_line(fd);
-    while (str && str2)
-    {
-        same_opps(str, str2);
-        free(str);
-        free(str2);
-        str = get_next_line(fd);
-        str2 = get_next_line(fd);
-    }
-    if(str && !str2)
-        ft_printf("%s", str);
-    free(str);
-    if(str2)
-        free(str2);
-    close(fd);
-}
-void same_opps(char *str1, char *str2)
-{
-    int i;
-    int j;
-
-    i = 0;
-    j = 0;
-    while (str1[i] == str2[i] && str1[i] && str2[i])
-        i++;
-    if (str1[i] == 'a' || str1[i] == 'b')
-    {
-        while(str1[j] != 'a' && str1[j] != 'b')
-        {
-            ft_printf("%c", str1[j]);
-            j++;
-        }
-        ft_printf("%c\n", str1[j - 1]);
-    }
-    else
-        ft_printf("%s%s", str1, str2);
-}

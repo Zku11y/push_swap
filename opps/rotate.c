@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:10:25 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/06 11:48:44 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/06 12:39:33 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void rotate(t_list **stack, t_list **stack_b, char *name)
     write(fd, "r", 1);
     write(fd, name, 1);
     write(fd, "\n", 1);
-    ft_printf("r%s\n", name);
+    // ft_printf("r%s\n", name);
     close(fd);
 }
 void rev_rotate(t_list **stack, t_list **stack_b, char *name)
@@ -55,6 +55,6 @@ void rev_rotate(t_list **stack, t_list **stack_b, char *name)
     write(fd, "rr", 2);
     write(fd, name, 1);
     write(fd, "\n", 1);
-    ft_printf("rr%s\n", name);
+    // ft_printf("rr%s\n", name);
     close(fd);
 }

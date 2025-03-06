@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:11 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/06 10:44:32 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/06 14:25:30 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int     skip_space(int i, char *str);
 int     skip_numbers(int i, char *str);
 t_list  *find_biggest_nb(t_list **stack);
 t_list  *find_smallest_nb(t_list **stack);
-void    same_opps(char *str1, char *str2);
 void    file_clear(t_list **stack_a, t_list **stack_b);
 void    clear_exit(t_list **stack_a, t_list **stack_b, int exit_code);
 
