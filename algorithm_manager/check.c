@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 13:11:18 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/05 14:09:59 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/06 10:14:21 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,16 +100,16 @@ void rot_and_rev(int pos, int size, t_list **stack)
     if (size % 2 == 0)
     {
         while (pos <= (size / 2) && pos-- > 1)
-            rotate(stack, NULL,"ra\n");
+            rotate(stack, NULL,"a");
         while(pos > (size / 2) && pos++ <= size)
-            rev_rotate(stack, NULL,"rra\n");
+            rev_rotate(stack, NULL,"a");
     }
     else
     {
         while (pos <= ((size / 2) + 1) && pos-- > 1)
-            rotate(stack, NULL,"ra\n");
+            rotate(stack, NULL,"a");
         while(pos > ((size / 2) + 1) && pos++ <= size)
-            rev_rotate(stack, NULL,"rra\n");
+            rev_rotate(stack, NULL,"a");
     }
 }
 

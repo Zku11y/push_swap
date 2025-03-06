@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:11 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/05 15:57:46 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/06 10:44:32 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ t_list  *cheapest_manager(t_list **stack_a, t_list **stack_b);
 t_list  *b_position(t_list **stack_b, int a);
 int     calc_moves(t_list **stack, t_list *current);
 t_list  *find_cheapest(t_list **stack, int *arr);
+void    apply_moves(t_list **s1, t_list **s2, t_list *num, char *n);
+t_list  *small_or_big(t_list **stack_b, int a);
 
 // checker functions
 void    check_dup(t_list **stack);

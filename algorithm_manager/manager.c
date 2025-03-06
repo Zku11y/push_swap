@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:28:52 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/05 14:58:56 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/06 11:49:43 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void sort_checker(t_list **stack_a)
             algo_manager(stack_a, &stack_b);
         ft_lstclear(&stack_b, del);
     }
-    file_clear(stack_a, &stack_b);
+    // file_clear(stack_a, &stack_b);
 }
 int trunc_fd()
 {
@@ -68,13 +68,11 @@ void file_clear(t_list **stack_a, t_list **stack_b)
     char *str;
     char *str2;
 
-    fd = open("./opps/operations.txt", O_RDWR | O_CREAT, 0777);
+    fd = open("./opps/operations.txt", O_RDWR | O_CREAT, 0644);
     if (fd == -1)
         return(clear_exit(stack_a, stack_b, EXIT_FAILURE));
     str = get_next_line(fd);
     str2 = get_next_line(fd);
-    if(str && !str2)
-        ft_printf("%s", str);
     while (str && str2)
     {
         same_opps(str, str2);
@@ -83,6 +81,8 @@ void file_clear(t_list **stack_a, t_list **stack_b)
         str = get_next_line(fd);
         str2 = get_next_line(fd);
     }
+    if(str && !str2)
+        ft_printf("%s", str);
     free(str);
     if(str2)
         free(str2);

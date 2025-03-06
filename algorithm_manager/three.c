@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:47:27 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/04 09:25:06 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/06 10:13:09 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 void handle_smallest(t_list **stack, t_list *biggest)
 {
     if (biggest->next == NULL)
-        swap(stack, NULL,"sa\n");
+        swap(stack, NULL,"a");
     else
-        rotate(stack, NULL,"ra\n");
+        rotate(stack, NULL,"a");
 }
 void handle_middle(t_list **stack, t_list *smallest)
 {
     if (smallest->next == NULL)
     {
-        rotate(stack, NULL,"ra\n");
-        swap(stack, NULL, "sa\n");
+        rotate(stack, NULL,"a");
+        swap(stack, NULL, "a");
     }
 }
 void handle_biggest(t_list **stack, t_list *smallest)
 {
     if (smallest->next == NULL)
-        rev_rotate(stack, NULL, "rra\n");
+        rev_rotate(stack, NULL, "a");
     else
     {
-        rev_rotate(stack, NULL,"rra\n");
-        swap(stack, NULL,"sa\n");
+        rev_rotate(stack, NULL,"a");
+        swap(stack, NULL,"a");
     }
 }
 

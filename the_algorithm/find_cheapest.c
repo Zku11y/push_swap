@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:29:00 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/05 17:27:51 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/06 10:49:49 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ t_list *b_position(t_list **stack_b, int a)
         return (*stack_b);
     current = *stack_b;
     tmp = current->number;
-    smallest = current;
     prev = -2147483650;
+    smallest = small_or_big(stack_b, a);
+    if(smallest != NULL)
+        return (smallest);
+    smallest = current;
     while (current)
     {
         if (current->number < a && current->number > prev)
@@ -79,31 +82,14 @@ t_list *b_position(t_list **stack_b, int a)
     }
     return (smallest);
 }
-int calc_moves(t_list **stack, t_list *current)
+t_list *small_or_big(t_list **stack_b, int a)
 {
-    t_list *tmp;
-    int pos;
-    int size;
-    int moves;
+    t_list *smallest;
+    t_list *biggest;
 
-    pos = 0;
-    moves = 0;
-    tmp = *stack;
-    size = ft_lstsize(*stack);
-    while (tmp && tmp != current)
-    {
-        pos++;
-        tmp = tmp->next;
-    }
-    if (pos <= (size / 2))
-    {
-        while (pos-- > 0)
-            moves++;
-    }
-    else
-    {
-        while (pos++ < size)
-            moves++;
-    }
-    return (moves);
+    smallest = find_smallest_nb(stack_b);
+    biggest = find_biggest_nb(stack_b);
+    if(a < smallest->number || a > biggest->number)
+        return (biggest);
+    return (NULL);
 }
