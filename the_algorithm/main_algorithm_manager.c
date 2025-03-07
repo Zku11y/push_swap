@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:17:06 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/06 11:51:37 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/07 14:58:32 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void algo_manager(t_list **stack_a, t_list **stack_b)
     push(stack_a, stack_b, "b");
     push(stack_a, stack_b, "b");
     if ((*stack_b)->number <  (*stack_b)->next->number)
-        swap(stack_b, stack_a, "b");
+        rotate(stack_b, stack_a, "b");
     // ft_printf("\e[1;35mBefore Operation...\e[0m\nStack_a => ");
     // lst_print(*stack_a);
     // ft_printf("stack_b => ");
@@ -48,6 +48,7 @@ void algo_manager(t_list **stack_a, t_list **stack_b)
         // ft_printf("stack_b => ");
         // lst_print(*stack_b);
         push(stack_a, stack_b, "b");
+        // rot_stack(stack_b, false);
         // ft_printf("\e[1;35mafter pushing %d to top of b...\e[0m\nStack_a => ", cheapest_a->number);
         // lst_print(*stack_a);
         // ft_printf("stack_b => ");

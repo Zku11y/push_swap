@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:11 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/06 14:25:30 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/07 16:16:50 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # include <stdbool.h>
 # include <fcntl.h>
 
+typedef struct num_struct
+{
+    int ra;
+    int rb;
+    int rra;
+    int rrb;
+}  t_numbers;
 // Operation functions
 void    rot_stack(t_list **stack, bool min);
 void    push(t_list **from, t_list **to, char *name);
