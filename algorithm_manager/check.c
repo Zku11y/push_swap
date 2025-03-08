@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 13:11:18 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/06 10:14:21 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/08 14:13:18 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int check_sort(t_list **stack, t_list **stack_b)
         tmp = small->number;
         small = small->next;
     }
-    return (rot_stack(stack, true), 0);
+    return (rot_stack(stack, true, 'a'), 0);
 }
 void check_dup(t_list **stack)
 {
@@ -93,34 +93,34 @@ int check_rev_sort(t_list **stack)
         tmp = big->number;
         big = big->next;
     }
-    return (rot_stack(stack, false), 0);
+    return (rot_stack(stack, false, 'a'), 0);
 }
-void rot_and_rev(int pos, int size, t_list **stack)
+void rot_and_rev(int pos, int size, t_list **stack, char name)
 {
     if (size % 2 == 0)
     {
         while (pos <= (size / 2) && pos-- > 1)
-            rotate(stack, NULL,"a");
+            rotate(stack, NULL, &name);
         while(pos > (size / 2) && pos++ <= size)
-            rev_rotate(stack, NULL,"a");
+            rev_rotate(stack, NULL, &name);
     }
     else
     {
         while (pos <= ((size / 2) + 1) && pos-- > 1)
-            rotate(stack, NULL,"a");
+            rotate(stack, NULL, &name);
         while(pos > ((size / 2) + 1) && pos++ <= size)
-            rev_rotate(stack, NULL,"a");
+            rev_rotate(stack, NULL, &name);
     }
 }
 
-void rot_stack(t_list **stack, bool min)
+void rot_stack(t_list **stack, bool min, char name)
 {
     t_list *num;
     t_list *current;
     int pos;
     int size;
 
-    // lst_print(*stack);
+
     current = *stack;
     if(min == true)
         num = find_smallest_nb(stack);
@@ -133,5 +133,5 @@ void rot_stack(t_list **stack, bool min)
         pos++;
         current = current->next;
     }
-    rot_and_rev(pos, size, stack);
+    rot_and_rev(pos, size, stack, name);
 }

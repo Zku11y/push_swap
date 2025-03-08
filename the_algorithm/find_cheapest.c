@@ -6,12 +6,40 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:29:00 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/06 10:49:49 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/08 14:43:34 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+int moves_to_top(t_list **stack, t_list *current)
+{
+    t_list *tmp;
+    int pos;
+    int size;
+    int moves;
+
+    pos = 0;
+    moves = 0;
+    tmp = *stack;
+    size = ft_lstsize(*stack);
+    while (tmp && tmp != current)
+    {
+        pos++;
+        tmp = tmp->next;
+    }
+    if (pos <= (size / 2))
+    {
+        while (pos-- > 0)
+            moves++;
+    }
+    else
+    {
+        while (pos++ < size)
+            moves++;
+    }
+    return(moves);
+}
 t_list *cheapest_manager(t_list **stack_a, t_list **stack_b)
 {
     t_list *tmp_a;
@@ -28,7 +56,7 @@ t_list *cheapest_manager(t_list **stack_a, t_list **stack_b)
     while(tmp_a)
     {
         tmp_b = b_position(stack_b, tmp_a->number);
-        arr[i] = calc_moves(stack_a, tmp_a) + calc_moves(stack_b, tmp_b);
+        arr[i] = calc_moves(stack_a, tmp_a) + calc_moves(stack_b, tmp_b) + moves_to_top(stack_b, tmp_b);
         tmp_a = tmp_a->next;
         i++;
     }

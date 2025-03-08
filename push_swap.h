@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:11 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/07 16:16:50 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/08 14:08:35 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct num_struct
     int rrb;
 }  t_numbers;
 // Operation functions
-void    rot_stack(t_list **stack, bool min);
+void    rot_stack(t_list **stack, bool min, char name);
 void    push(t_list **from, t_list **to, char *name);
 void    swap(t_list **stack, t_list **stack_b, char *name);
 void    rotate(t_list **stack, t_list **stack_b,char *name);
@@ -47,6 +47,7 @@ int     calc_moves(t_list **stack, t_list *current);
 t_list  *find_cheapest(t_list **stack, int *arr);
 void    apply_moves(t_list **s1, t_list **s2, t_list *num, char *n);
 t_list  *small_or_big(t_list **stack_b, int a);
+void    print_rr(t_numbers nums);
 
 // checker functions
 void    check_dup(t_list **stack);
@@ -60,10 +61,10 @@ int     trunc_fd();
 void    del(void *content);
 void    lst_print(t_list *head);
 t_list  *ft_lstnew_mod(int number);
-void    prev_assign(t_list **stack);
-int     ft_atoi_mod(const char *str);
+int     ft_atoi_mod(const char *str, t_list **stack_a);
 int     skip_space(int i, char *str);
 int     skip_numbers(int i, char *str);
+void    prev_assign(t_list **stack);
 t_list  *find_biggest_nb(t_list **stack);
 t_list  *find_smallest_nb(t_list **stack);
 void    file_clear(t_list **stack_a, t_list **stack_b);

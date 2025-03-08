@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:28:52 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/07 14:56:14 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/08 14:32:57 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,16 @@ int trunc_fd()
 {
     int fd;
     
-    fd = open("./opps/operations.txt", O_RDONLY | O_TRUNC);
+    fd = open("./opps/operations.txt", O_RDONLY | O_CREAT |O_TRUNC, 0644);
     if (fd == -1)
-    {
-        ft_printf("\e[1;31mopen file error...\e[0m\n");
         return (-1);
-    }
     close(fd);
     return (0);
 }
 void clear_exit(t_list **stack_a, t_list **stack_b,int exit_code)
 {
     if (exit_code == EXIT_FAILURE)
-        ft_printf("\e[1;31mError\e[0m\n");
+        write(2, "\e[1;31mError\e[0m\n", 18);
     ft_lstclear(stack_a, del);
     if (stack_b)
         ft_lstclear(stack_b, del);

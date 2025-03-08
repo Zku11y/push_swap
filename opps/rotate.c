@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:10:25 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/06 12:39:33 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/07 20:16:17 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ void rotate(t_list **stack, t_list **stack_b, char *name)
     old_head->prev = old_tail;
     fd = open("./opps/operations.txt", O_RDWR | O_CREAT | O_APPEND);
     if (fd == -1)
-        return(ft_printf("\e[1;31mopen file error...\e[0m\n"), clear_exit(stack, stack_b, EXIT_FAILURE));
+        return(clear_exit(stack, stack_b, EXIT_FAILURE));
     write(fd, "r", 1);
     write(fd, name, 1);
     write(fd, "\n", 1);
-    // ft_printf("r%s\n", name);
     close(fd);
 }
 void rev_rotate(t_list **stack, t_list **stack_b, char *name)
@@ -51,10 +50,9 @@ void rev_rotate(t_list **stack, t_list **stack_b, char *name)
     *stack = old_tail;
     fd = open("./opps/operations.txt", O_RDWR | O_CREAT | O_APPEND);
     if (fd == -1)
-        return(ft_printf("\e[1;31mopen file error...\e[0m\n"), clear_exit(stack, stack_b, EXIT_FAILURE));
+        return(clear_exit(stack, stack_b, EXIT_FAILURE));
     write(fd, "rr", 2);
     write(fd, name, 1);
     write(fd, "\n", 1);
-    // ft_printf("rr%s\n", name);
     close(fd);
 }

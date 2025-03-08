@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:27:09 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/06 11:19:36 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/07 19:50:25 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,28 @@ void apply_moves(t_list **s1, t_list **s2, t_list *num, char *n)
     {
         while (pos++ < size)
             rev_rotate(s1, s2, n);
+    }
+}
+void print_rr(t_numbers nums)
+{
+    int tmp;
+
+    if(nums.rra > nums.rrb)
+    {
+        tmp = nums.rrb;
+        while(tmp--)
+            ft_printf("rrr\n");
+        tmp = nums.rra - nums.rrb;
+        while(tmp--)
+            ft_printf("rra\n");
+    }
+    else if(nums.rra <= nums.rrb)
+    {
+        tmp = nums.rra;
+        while(tmp--)
+            ft_printf("rrr\n");
+        tmp = nums.rrb - nums.rra;
+        while(tmp--)
+            ft_printf("rrb\n");
     }
 }
