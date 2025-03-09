@@ -6,15 +6,15 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:07:02 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/08 14:31:21 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/09 19:41:13 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void leak_ts(void)
+void	leak_ts(void)
 {
-    system("leaks push_swap");
+	system("leaks push_swap");
 }
 
 void	lst_print(t_list *head)
@@ -42,25 +42,24 @@ void	lst_print(t_list *head)
 	ft_printf("\033[1;33m %d\033[0m\n", size);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    int i;
-    t_list *stack_a;
+	int		i;
+	t_list	*stack_a;
 
-    atexit(leak_ts);
-    i = 1;
-    stack_a = NULL;
-    while (i < ac)
-    {
-        num_check(av[i]);
-        assign_manager(av[i], &stack_a);
-        i++;
-    }
-	if(ft_lstsize(stack_a) == 0)
-		return(ft_lstclear(&stack_a, del), 0);
+	i = 1;
+	stack_a = NULL;
+	while (i < ac)
+	{
+		num_check(av[i]);
+		assign_manager(av[i], &stack_a);
+		i++;
+	}
+	if (ft_lstsize(stack_a) == 0)
+		return (ft_lstclear(&stack_a, del), 0);
 	check_dup(&stack_a);
 	prev_assign(&stack_a);
 	sort_checker(&stack_a);
 	ft_lstclear(&stack_a, del);
-	return 0;
+	return (0);
 }

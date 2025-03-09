@@ -1,0 +1,122 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/08 16:13:51 by mdakni            #+#    #+#             */
+/*   Updated: 2025/03/09 19:46:37 by mdakni           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../push_swap.h"
+
+void	lst_print(t_list *head)
+{
+	int	data;
+	int	size;
+
+	size = 0;
+	if (!head)
+		ft_printf("\033[1;31mhead 5awi a zmr\033[0m\n");
+	while (head)
+	{
+		size++;
+		data = head->number;
+		if (data == 0)
+			ft_printf("\033[1;31m%d\033[0m", 0);
+		else if (data < 0)
+			ft_printf("\033[3;1;36m%d\033[0m", data);
+		else
+			ft_printf("\033[1;34m%d\033[0m", data);
+		ft_printf("\033[1;37m -> \033[0m");
+		head = head->next;
+	}
+	ft_printf("\033[1;35mNULL\033[0m");
+	ft_printf("\033[1;33m %d\033[0m\n", size);
+}
+
+int	main(int ac, char **av)
+{
+	int		i;
+	t_list	*stack_a;
+	t_list	*stack_b;
+
+	atexit(leak_ts_checker);
+	i = 1;
+	stack_a = NULL;
+	while (i < ac)
+	{
+		num_check(av[i]);
+		assign_manager(av[i], &stack_a);
+		i++;
+	}
+	if (ft_lstsize(stack_a) == 0)
+		return (ft_lstclear(&stack_a, del), 0);
+	check_dup(&stack_a);
+	read_input(&stack_a, &stack_b);
+}
+
+int	apply_move(t_list **stack_a, t_list **stack_b, char *str)
+{
+	if (ft_strncmp(str, "ra\n", 3) == 0)
+		rotate(stack_a, stack_b, "a");
+	else if (ft_strncmp(str, "rra\n", 4) == 0)
+		rev_rotate(stack_a, stack_b, "a");
+	else if (ft_strncmp(str, "rb\n", 3) == 0)
+		rotate(stack_b, stack_a, "b");
+	else if (ft_strncmp(str, "rrb\n", 4) == 0)
+		rev_rotate(stack_b, stack_a, "b");
+	else if (ft_strncmp(str, "sa\n", 3) == 0)
+		swap(stack_a, stack_b, "a");
+	else if (ft_strncmp(str, "sb\n", 3) == 0)
+		swap(stack_b, stack_a, "b");
+	else if (ft_strncmp(str, "pa\n", 3) == 0)
+		push(stack_b, stack_a, "b");
+	else if (ft_strncmp(str, "pb\n", 3) == 0)
+		push(stack_a, stack_b, "a");
+	else
+		return (-1);
+	return (0);
+}
+
+void	checker_sorted(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*current;
+	int		tmp;
+
+	current = *stack_a;
+	tmp = current->number;
+	while (current)
+	{
+		if (current->number < tmp)
+		{
+			ft_printf("KO\n");
+			clear_exit(stack_a, stack_b, EXIT_SUCCESS);
+		}
+		current = current->next;
+	}
+	ft_printf("OK\n");
+	clear_exit(stack_a, stack_b, EXIT_SUCCESS);
+}
+
+void	read_input(t_list **stack_a, t_list **stack_b)
+{
+	char	*str;
+
+	str = get_next_line(0);
+	while (str)
+	{
+		if (apply_move(stack_a, stack_b, str) == -1)
+			clear_exit(stack_a, stack_b, EXIT_FAILURE);
+		free(str);
+		str = get_next_line(0);
+	}
+	if (*stack_b != NULL)
+	{
+		ft_printf("KO\n");
+		clear_exit(stack_a, stack_b, EXIT_SUCCESS);
+	}
+	checker_sorted(stack_a, stack_b);
+}

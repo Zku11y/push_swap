@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:49:28 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/08 14:08:20 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/09 19:46:07 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_list	*ft_lstnew_mod(int number)
 	ptr->next = NULL;
 	return (ptr);
 }
+
 int	ft_atoi_mod(const char *str, t_list **stack_a)
 {
 	int			i;
@@ -44,5 +45,5 @@ int	ft_atoi_mod(const char *str, t_list **stack_a)
 		answer = (answer * 10) + (str[i++] - '0');
 	if ((answer * sign) > INT_MAX || (answer * sign) < INT_MIN)
 		clear_exit(stack_a, NULL, EXIT_FAILURE);
-    return ((int)(answer * sign));
+	return ((int)(answer * sign));
 }

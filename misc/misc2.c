@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   five.c                                             :+:      :+:    :+:   */
+/*   misc2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 13:48:15 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/09 19:43:28 by mdakni           ###   ########.fr       */
+/*   Created: 2025/03/08 17:26:28 by mdakni            #+#    #+#             */
+/*   Updated: 2025/03/09 19:45:30 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	handle_5(t_list **stack_a, t_list **stack_b)
+void	leak_ts_checker(void)
 {
-	t_list	*smallest;
-	int		size;
-
-	smallest = find_smallest_nb(stack_a);
-	size = ft_lstsize(*stack_a);
-	rot_stack(stack_a, true, 'a');
-	push(stack_a, stack_b, "b");
-	handle_4(stack_a, stack_b);
-	push(stack_b, stack_a, "a");
+	system("leaks checker");
 }
