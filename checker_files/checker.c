@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 16:13:51 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/09 19:46:37 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/10 00:10:22 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	main(int ac, char **av)
 	t_list	*stack_a;
 	t_list	*stack_b;
 
-	atexit(leak_ts_checker);
 	i = 1;
 	stack_a = NULL;
 	while (i < ac)
@@ -53,8 +52,9 @@ int	main(int ac, char **av)
 		i++;
 	}
 	if (ft_lstsize(stack_a) == 0)
-		return (ft_lstclear(&stack_a, del), 0);
+		return (write(2, "Error\n", 6), ft_lstclear(&stack_a, del), 0);
 	check_dup(&stack_a);
+	prev_assign(&stack_a);
 	read_input(&stack_a, &stack_b);
 }
 
