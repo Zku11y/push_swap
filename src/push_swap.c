@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:07:02 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/09 23:45:33 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/17 04:12:34 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	lst_print(t_list *head)
 {
 	int	data;
 	int	size;
+	int index;
 
 	size = 0;
 	if (!head)
@@ -29,12 +30,13 @@ void	lst_print(t_list *head)
 	{
 		size++;
 		data = head->number;
+		index = head->index;
 		if (data == 0)
 			ft_printf("\033[1;31m%d\033[0m", 0);
 		else if (data < 0)
-			ft_printf("\033[3;1;36m%d\033[0m", data);
+			ft_printf("\033[3;1;36m{%d = %d}\033[0m", index, data);
 		else
-			ft_printf("\033[1;34m%d\033[0m", data);
+			ft_printf("\033[1;34m{%d = %d}\033[0m", index, data);
 		ft_printf("\033[1;37m -> \033[0m");
 		head = head->next;
 	}

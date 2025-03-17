@@ -6,11 +6,58 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:29:00 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/09 19:47:27 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/17 18:01:09 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+t_list *a_position(t_list **stack_a,t_list *tmp_b)
+{
+	t_list *iter;
+	t_list *prev;
+	int i;
+
+	i = 0;
+	iter = *stack_a;
+	prev = iter;
+	while(iter)
+	{
+		if(iter->number < tmp_b->number && iter->number > prev->number)
+			prev = iter;
+		iter = iter->next;
+	}
+	return(prev);
+}
+int	top_or_bottom(t_list **stack, t_list *current)
+{
+	t_list	*tmp;
+	int		pos;
+	int		size;
+
+	pos = 0;
+	tmp = *stack;
+	size = ft_lstsize(*stack);
+	while (tmp && tmp != current)
+	{
+		pos++;
+		tmp = tmp->next;
+	}
+	if (pos <= (size / 2))
+		return(1);
+	else
+		return (0);
+}
+
+int calc_biggest(t_list **stack_b, int b_moves)
+{
+    t_list *biggest = find_biggest_nb(stack_b);
+    int biggest_moves = calc_moves(stack_b, biggest);
+
+    if (biggest_moves <= b_moves)
+        return 0;
+
+    return biggest_moves - b_moves;
+}
 
 int	moves_to_top(t_list **stack, t_list *current)
 {
@@ -65,16 +112,42 @@ t_list	*cheapest_manager(t_list **stack_a, t_list **stack_b)
 	return (free(arr), cheapest);
 }
 
+
+t_list	*cheapest_manager_2(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*tmp_a;
+	t_list	*tmp_b;
+	t_list	*cheapest;
+	int		*arr;
+	int		i;
+
+	i = 0;
+	arr = malloc(ft_lstsize(*stack_b) * sizeof(int));
+	if (arr == NULL)
+		return (clear_exit(stack_a, stack_b, EXIT_FAILURE), NULL);
+	tmp_b = *stack_b;
+	while (tmp_b)
+	{
+		tmp_a = a_position(stack_a, tmp_b);
+		arr[i] = calc_moves(stack_a, tmp_a) + calc_moves(stack_b, tmp_b);
+		tmp_b = tmp_b->next;
+		i++;
+	}
+	cheapest = find_cheapest(stack_b, arr);
+	return (free(arr), cheapest);
+}
 t_list	*find_cheapest(t_list **stack, int *arr)
 {
 	int		i;
 	int		smallest;
 	t_list	*current;
+    int size;
 
 	i = 0;
 	current = *stack;
 	smallest = 0;
-	while (i < ft_lstsize(*stack))
+    size = ft_lstsize(*stack);
+	while (i < size)
 	{
 		if (arr[i] < arr[smallest])
 			smallest = i;

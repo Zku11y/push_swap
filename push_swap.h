@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 09:34:11 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/09 19:45:42 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/17 17:32:32 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,27 @@ typedef struct num_struct
 	int	rra;
 	int	rrb;
 }		t_numbers;
+
+typedef struct positions
+{
+	int X;
+	int X_moves;
+	int B;
+}	t_pos;
+
+void better_algo(t_list **stack_a, t_list **stack_b);
+int	top_or_bottom(t_list **stack, t_list *current);
+t_list	*cheapest_manager_2(t_list **stack_a, t_list **stack_b);
+void	apply_moves(t_list **s1, t_list **s2, t_list *num, char *n);
+void best_move(t_list **stack_a, t_list **stack_b, int chunks, int chunk_size);
+t_list *a_position(t_list **stack_a,t_list *tmp_b);
 // Operation functions
 void	rot_stack(t_list **stack, bool min, char name);
 void	push(t_list **from, t_list **to, char *name);
 void	swap(t_list **stack, t_list **stack_b, char *name);
 void	rotate(t_list **stack, t_list **stack_b, char *name);
 void	rev_rotate(t_list **stack, t_list **stack_b, char *name);
+void	rot_and_rev(int pos, int size, t_list **stack, char name);
 
 // Small Algorithm functions
 void	handle_3(t_list **stack);
@@ -39,13 +54,14 @@ void	handle_4(t_list **stack_a, t_list **stack_b);
 void	handle_5(t_list **stack_a, t_list **stack_b);
 int		assign_manager(char *str, t_list **stack_a);
 
+
 // Big Algorithm functions (THE MOST IMPORTANT PART OF THE CODE)
 void	algo_manager(t_list **stack_a, t_list **stack_b);
 t_list	*cheapest_manager(t_list **stack_a, t_list **stack_b);
 t_list	*b_position(t_list **stack_b, int a);
 int		calc_moves(t_list **stack, t_list *current);
 t_list	*find_cheapest(t_list **stack, int *arr);
-void	apply_moves(t_list **s1, t_list **s2, t_list *num, char *n);
+// void	apply_moves(t_list **s1, t_list **s2, t_list *num, char *n, int size);
 t_list	*small_or_big(t_list **stack_b, int a);
 void	print_rr(t_numbers nums);
 

@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:21:14 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/09 19:45:36 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/16 13:18:27 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef struct s_list
 {
 	int				number;
+	int				index;
 	void			*content;
 	struct s_list	*next;
 	struct s_list	*prev;

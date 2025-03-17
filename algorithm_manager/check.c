@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 13:11:18 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/09 19:42:19 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/16 14:24:40 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_sort(t_list **stack, t_list **stack_b)
 	t_list	*small;
 
 	if (!stack || !(*stack) || !((*stack)->next))
-		return (clear_exit(stack, stack_b, EXIT_FAILURE), 0);
+		return (clear_exit(stack, stack_b, EXIT_SUCCESS), 0);
 	small = find_smallest_nb(stack);
 	tmp = small->number;
 	smallest = tmp;

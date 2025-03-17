@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:28:52 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/09 19:42:36 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/17 05:22:20 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void	sort_checker(t_list **stack_a)
 		else if (size == 5)
 			handle_5(stack_a, &stack_b);
 		else
-			algo_manager(stack_a, &stack_b);
+			better_algo(stack_a, &stack_b);
+			// push_swap_GPT(stack_a, &stack_b, ft_lstsize(*stack_a));
+			// algo_manager(stack_a, &stack_b);
 		ft_lstclear(&stack_b, del);
 	}
 	file_clear(stack_a, &stack_b);

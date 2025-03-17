@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:27:09 by mdakni            #+#    #+#             */
-/*   Updated: 2025/03/09 19:44:51 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/03/17 17:09:28 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,30 @@ int	calc_moves(t_list **stack, t_list *current)
 	}
 	return (moves);
 }
+
+// void	apply_moves(t_list **s1, t_list **s2, t_list *num, char *n, int size)
+// {
+// 	t_list	*tmp;
+// 	int		pos;
+
+// 	pos = 0;
+// 	tmp = *s1;
+// 	while (tmp && tmp != num)
+// 	{
+// 		pos++;
+// 		tmp = tmp->next;
+// 	}
+// 	if (pos <= (size / 2))
+// 	{
+// 		while (pos-- > 0)
+// 			rotate(s1, s2, n);
+// 	}
+// 	else
+// 	{
+// 		while (pos++ < size)
+// 			rev_rotate(s1, s2, n);
+// 	}
+// }
 
 void	apply_moves(t_list **s1, t_list **s2, t_list *num, char *n)
 {
