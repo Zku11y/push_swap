@@ -1,28 +1,23 @@
 NAME = push_swap
-CHECKER = checker
+BONUS = checker
 
 CC = cc
-LIBFT = libft/libft.a
-GNL_DIR = get_next_line
-PRINTF = printf/libftprintf.a
-CFLAGS = -g -Wall -Wextra -Werror
+LIBFT_DIR = includes/libft
+PRINTF_DIR = includes/printf
+LIBFT = $(LIBFT_DIR)/libft.a
+PRINTF = $(PRINTF_DIR)/libftprintf.a
+CFLAGS = -Wall -Wextra -Werror
 
-SRC = src/assign.c src/parse.c src/push_swap.c \
-	  opps/push.c opps/rotate.c opps/swap.c \
-	  mods/list_mods.c misc/misc1.c \
-	  get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-	  algorithm_manager/check.c algorithm_manager/five.c algorithm_manager/four.c algorithm_manager/manager.c algorithm_manager/three.c \
-	  the_algorithm/main_algorithm_manager.c the_algorithm/find_cheapest.c \
-	  optimization/one_instead_of_two_ops.c
+SRC = 	mandatory/src/assign.c mandatory/src/parse.c mandatory/src/push_swap.c mandatory/src/misc.c \
+		mandatory/opps/push.c mandatory/opps/rotate.c mandatory/opps/swap.c mandatory/mods/list_mods.c \
+		mandatory/algorithm_manager/check.c mandatory/algorithm_manager/five.c \
+		mandatory/algorithm_manager/four.c mandatory/algorithm_manager/manager.c \
+		mandatory/algorithm_manager/three.c mandatory/algorithm_manager/main_algorithm_manager.c \
 
-BSRC =  src/assign.c src/parse.c \
-	  	opps/push.c opps/rotate.c opps/swap.c \
-	  	mods/list_mods.c misc/misc1.c misc/misc2.c \
-	  	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-	 	algorithm_manager/check.c algorithm_manager/five.c algorithm_manager/four.c algorithm_manager/manager.c algorithm_manager/three.c \
-	 	the_algorithm/main_algorithm_manager.c the_algorithm/find_cheapest.c \
-	  	optimization/one_instead_of_two_ops.c \
-		checker_files/checker.c
+BSRC =  bonus/src/assign_bonus.c bonus/src/parse_bonus.c \
+	   	bonus/src/check_bonus.c bonus/src/checker_bonus.c \
+	   	bonus/src/list_mods_bonus.c bonus/opps/push_bonus.c \
+	   	bonus/opps/rotate_bonus.c bonus/opps/swap_bonus.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -30,32 +25,44 @@ BOBJ = $(BSRC:.c=.o)
 
 all: $(NAME)
 
-checker: $(CHECKER)
+bonus: $(BONUS)
 
 $(NAME): $(OBJ) $(LIBFT) $(PRINTF)
+
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
 
+
 $(LIBFT):
-	make -C libft bonus
+	make -C $(LIBFT_DIR) bonus
+
 
 $(PRINTF):
-	make -C printf
+	make -C $(PRINTF_DIR)
 
-$(CHECKER): $(BOBJ) $(LIBFT) $(PRINTF)
-	$(CC) $(CFLAGS) $(BOBJ) $(LIBFT) $(PRINTF) -o $(CHECKER)
 
-%.o: %.c
+$(BONUS): $(BOBJ) $(LIBFT) $(PRINTF)
+	$(CC) $(CFLAGS) $(BOBJ) $(LIBFT) $(PRINTF) -o $(BONUS)
+
+
+$(OBJ): %.o: %.c ./mandatory/push_swap.h
 	$(CC) $(CFLAGS) -c $< -o $@
+
+
+$(BOBJ): %.o: %.c ./bonus/push_swap_bonus.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
 
 clean:
 	rm -f $(OBJ) $(BOBJ)
-	make -C libft clean
-	make -C printf clean
+	make -C $(LIBFT_DIR) clean
+	make -C $(PRINTF_DIR) clean
+
 
 fclean: clean
-	rm -f $(NAME) $(CHECKER)
-	make -C libft fclean
-	make -C printf fclean
+	rm -f $(NAME) $(BONUS)
+	make -C $(LIBFT_DIR) fclean
+	make -C $(PRINTF_DIR) fclean
+
 
 re: fclean all
 
